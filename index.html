@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit Negócio no Controle – 4 planilhas automáticas para pequenos negócios</title>
+<meta name="description" content="Saiba quanto seu negócio lucra de verdade: fluxo de caixa, estoque, precificação e painel de lucro em planilhas prontas. Excel e Google Planilhas.">
+<meta property="og:title" content="Kit Negócio no Controle">
+<meta property="og:description" content="4 planilhas automáticas para saber quanto entra, quanto sai, quanto cobrar e o que repor.">
+<meta property="og:image" content="img/capa.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #0f4c5c;
+    --teal-2: #1b6b7f;
+    --teal-l: #e6f0f2;
+    --green: #1e8449;
+    --green-h: #176b3a;
+    --red: #c0392b;
+    --yellow: #fff2cc;
+    --ink: #1d2a2e;
+    --muted: #5a6b70;
+    --bg: #ffffff;
+    --bg-2: #f6f9fa;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Inter, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.6; font-size: 17px; }
+  img { max-width: 100%; height: auto; display: block; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 16px; }
+  section { padding: 56px 0; }
+  .alt { background: var(--bg-2); }
+  h1, h2, h3 { line-height: 1.2; margin: 0 0 16px; }
+  h1 { font-size: clamp(28px, 6vw, 46px); font-weight: 800; }
+  h2 { font-size: clamp(24px, 4.5vw, 34px); font-weight: 800; color: var(--teal); text-align: center; }
+  h3 { font-size: 20px; }
+  p { margin: 0 0 14px; }
+  .lead { font-size: clamp(18px, 3vw, 21px); color: var(--muted); }
+  .center { text-align: center; }
+  .hl { color: var(--red); }
+
+  /* top bar */
+  .bar { background: var(--teal); color: #fff; text-align: center; font-size: 14px; padding: 8px 16px; font-weight: 600; }
+
+  /* hero */
+  .hero { background: linear-gradient(180deg, var(--teal-l), #fff); padding-top: 40px; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+  .hero img { border-radius: 14px; box-shadow: 0 12px 40px rgba(15,76,92,.18); }
+  .tag { display: inline-block; background: var(--yellow); color: #7a5c00; font-weight: 700; font-size: 13px; padding: 4px 10px; border-radius: 99px; margin-bottom: 14px; letter-spacing: .3px; }
+
+  /* CTA */
+  .cta { display: inline-block; background: var(--green); color: #fff; font-weight: 800; font-size: 19px; padding: 18px 30px; border-radius: 12px; text-decoration: none; box-shadow: 0 6px 18px rgba(30,132,73,.35); transition: background .15s, transform .15s; text-align: center; }
+  .cta:hover { background: var(--green-h); transform: translateY(-1px); }
+  .cta small { display: block; font-weight: 600; font-size: 13px; opacity: .9; }
+  .price-line { margin-top: 12px; font-size: 15px; color: var(--muted); }
+  .price-line b { color: var(--ink); font-size: 22px; }
+
+  /* lists */
+  .pains { list-style: none; padding: 0; margin: 24px auto 0; max-width: 720px; }
+  .pains li { background: #fff; border-left: 4px solid var(--red); padding: 12px 16px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+
+  /* story table */
+  .story { max-width: 760px; margin: 0 auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,.07); }
+  th { background: var(--teal); color: #fff; padding: 10px; font-size: 13px; text-align: left; }
+  td { padding: 10px; border-bottom: 1px solid #e3e9eb; }
+  td.num { text-align: right; white-space: nowrap; }
+  .bad { background: #f5b7b1; color: #922b21; font-weight: 700; }
+  .warn { background: #fcf3cf; color: #9a7d0a; font-weight: 600; }
+  .table-scroll { overflow-x: auto; }
+
+  /* features */
+  .features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 28px; }
+  .card { background: #fff; border: 1px solid #dfe8ea; border-radius: 14px; padding: 22px; }
+  .card .ico { font-size: 28px; }
+  .card h3 { color: var(--teal); margin-top: 8px; }
+  .shot { margin: 32px auto 0; max-width: 860px; border-radius: 12px; border: 1px solid #dfe8ea; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+  .caption { text-align: center; font-size: 14px; color: var(--muted); margin-top: 10px; }
+
+  /* for whom */
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+  .chips span { background: var(--teal-l); color: var(--teal); font-weight: 600; padding: 8px 14px; border-radius: 99px; font-size: 15px; }
+
+  /* steps */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 28px; counter-reset: s; }
+  .step { background: #fff; border-radius: 14px; padding: 22px; border: 1px solid #dfe8ea; }
+  .step::before { counter-increment: s; content: counter(s); display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--teal); color: #fff; font-weight: 800; margin-bottom: 10px; }
+
+  /* offer box */
+  .offer { max-width: 620px; margin: 0 auto; background: #fff; border: 2px solid var(--teal); border-radius: 18px; padding: 30px 24px; text-align: center; box-shadow: 0 12px 40px rgba(15,76,92,.12); }
+  .offer ul { text-align: left; list-style: none; padding: 0; margin: 18px 0 24px; }
+  .offer li { padding: 6px 0 6px 30px; position: relative; }
+  .offer li::before { content: "✔"; position: absolute; left: 0; color: var(--green); font-weight: 800; }
+  .big-price { font-size: 48px; font-weight: 800; color: var(--teal); line-height: 1; }
+  .big-price span { font-size: 20px; }
+
+  .guarantee { display: flex; gap: 20px; align-items: center; max-width: 720px; margin: 0 auto; background: #fff; border-radius: 14px; padding: 24px; border: 1px solid #dfe8ea; }
+  .seal { flex: 0 0 96px; height: 96px; border-radius: 50%; background: var(--green); color: #fff; display: grid; place-items: center; text-align: center; font-weight: 800; font-size: 14px; line-height: 1.1; }
+  .seal b { font-size: 30px; display: block; }
+
+  /* faq */
+  details { background: #fff; border: 1px solid #dfe8ea; border-radius: 10px; padding: 14px 18px; margin-bottom: 10px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  summary { font-weight: 700; cursor: pointer; }
+  details p { margin: 10px 0 0; color: var(--muted); }
+
+  footer { background: var(--teal); color: #cfe0e4; text-align: center; font-size: 13px; padding: 28px 16px; }
+  footer a { color: #fff; }
+
+  /* sticky mobile CTA */
+  .sticky { display: none; }
+
+  @media (max-width: 760px) {
+    section { padding: 40px 0; }
+    .hero-grid, .features, .steps { grid-template-columns: 1fr; }
+    .hero-grid > div:first-child { order: 2; }
+    .cta { display: block; width: 100%; }
+    .guarantee { flex-direction: column; text-align: center; }
+    .sticky { display: block; position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 16px; background: rgba(255,255,255,.96); box-shadow: 0 -4px 16px rgba(0,0,0,.1); z-index: 10; }
+    .sticky .cta { padding: 14px; font-size: 17px; }
+    body { padding-bottom: 76px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bar">Planilhas prontas • Acesso imediato • Funciona no Excel e no Google Planilhas (inclusive no celular)</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="tag">PARA AUTÔNOMOS E PEQUENOS NEGÓCIOS</span>
+      <h1>Você vende todo mês… mas sabe quanto <span class="hl">sobra de verdade</span>?</h1>
+      <p class="lead">O <b>Kit Negócio no Controle</b> tem 4 planilhas automáticas que mostram quanto entra, quanto sai, quanto cobrar em cada produto e o que precisa repor. Você só preenche — as contas são feitas sozinhas.</p>
+      <a class="cta js-checkout" href="https://pay.kiwify.com.br/TUx510p">QUERO MEU NEGÓCIO NO CONTROLE<small>Acesso imediato por R$ 27</small></a>
+      <p class="price-line">Pagamento único de <b>R$ 27</b> • Pix ou cartão • Garantia de 7 dias</p>
+    </div>
+    <div><img src="img/capa.jpg" alt="Kit Negócio no Controle aberto no notebook e no celular" width="1080" height="1080"></div>
+  </div>
+</section>
+
+<!-- PAINS -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Se alguma dessas frases é sua, este kit é para você</h2>
+    <ul class="pains">
+      <li>"Trabalho muito, vendo bem… e no fim do mês o dinheiro sumiu."</li>
+      <li>"Defino o preço olhando o do concorrente e torcendo para dar lucro."</li>
+      <li>"Misturo o dinheiro da casa com o do negócio e não sei o que é de quem."</li>
+      <li>"Só percebo que acabou o material quando o cliente já pediu."</li>
+      <li>"Já baixei planilha grátis, mas era confusa e eu desisti."</li>
+    </ul>
+  </div>
+</section>
+
+<!-- STORY -->
+<section>
+  <div class="wrap story">
+    <h2>Ela vendia bolo a R$ 140… e perdia dinheiro sem saber</h2>
+    <p class="center lead">Veja o que a planilha de precificação mostrou para uma confeitaria (exemplo que vem dentro do kit):</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Produto</th><th>Custo real</th><th>Preço cobrado</th><th>Lucro por unidade</th><th>Diagnóstico</th></tr></thead>
+        <tbody>
+          <tr><td>Bolo de pote 250ml</td><td class="num">R$ 7,00</td><td class="num">R$ 12,00</td><td class="num">R$ 1,64</td><td class="warn">Abaixo do ideal</td></tr>
+          <tr><td>Brigadeiro gourmet</td><td class="num">R$ 1,49</td><td class="num">R$ 3,50</td><td class="num">R$ 1,03</td><td class="warn">Abaixo do ideal</td></tr>
+          <tr><td>Bolo de aniversário 2kg</td><td class="num">R$ 114,00</td><td class="num">R$ 140,00</td><td class="num bad">-R$ 13,20</td><td class="bad">PREJUÍZO</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:18px">O bolo parecia lucrativo: custava R$ 54 de ingredientes e embalagem. Mas faltava colocar na conta <b>3 horas de trabalho</b>, a <b>taxa da maquininha</b> e a parte do <b>aluguel e da luz</b>. Com tudo isso, cada bolo vendido tirava R$ 13,20 do bolso.</p>
+    <p>A planilha calcula sozinha o <b>preço certo: R$ 271,43</b>. Sem fórmula, sem complicação — você só digita os custos.</p>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="alt">
+  <div class="wrap">
+    <h2>O que você recebe</h2>
+    <div class="features">
+      <div class="card"><div class="ico">📊</div><h3>Painel do Lucro</h3><p>Entradas, saídas, lucro e margem do ano, gráfico mês a mês e para onde vai o seu dinheiro. Tudo automático.</p></div>
+      <div class="card"><div class="ico">💸</div><h3>Fluxo de Caixa</h3><p>Anote cada entrada e saída em 10 segundos, com menus prontos de categoria e forma de pagamento. O saldo se atualiza sozinho.</p></div>
+      <div class="card"><div class="ico">🏷️</div><h3>Precificação</h3><p>Coloque os custos e veja o preço sugerido, o lucro real de cada venda e o alerta de <b>PREJUÍZO</b> quando o preço está errado.</p></div>
+      <div class="card"><div class="ico">📦</div><h3>Controle de Estoque</h3><p>Registre compras e uso de materiais. A planilha avisa <b>REPOR</b> antes de faltar e mostra quanto dinheiro está parado no estoque.</p></div>
+    </div>
+    <img class="shot" src="img/painel.jpg" alt="Painel do negócio com lucro, gráficos e indicadores" width="1168" height="819" loading="lazy">
+    <p class="caption">Painel real do kit, com os dados de exemplo da confeitaria.</p>
+  </div>
+</section>
+
+<!-- FOR WHOM -->
+<section>
+  <div class="wrap center">
+    <h2>Feito para quem toca o próprio negócio</h2>
+    <p class="lead">Não precisa entender de Excel nem de finanças. Se você sabe digitar um valor, sabe usar.</p>
+    <div class="chips">
+      <span>Confeitaria e doces</span><span>Marmitas e salgados</span><span>Salão e manicure</span><span>Revenda e loja</span>
+      <span>Artesanato</span><span>Prestador de serviço</span><span>Loja no Instagram</span><span>MEI e autônomo</span>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="alt">
+  <div class="wrap">
+    <h2>Como funciona</h2>
+    <div class="steps">
+      <div class="step"><h3>Compre e baixe</h3><p>Logo após o pagamento você recebe o acesso por e-mail e baixa as planilhas na área de membros.</p></div>
+      <div class="step"><h3>Preencha os campos brancos</h3><p>Coloque o nome do negócio, seus custos e seus lançamentos. Os campos brancos são os únicos que você mexe; os cinza são automáticos.</p></div>
+      <div class="step"><h3>Veja o resultado</h3><p>O painel mostra seu lucro, o preço certo e o que repor. 15 minutos por semana já bastam.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section id="oferta">
+  <div class="wrap">
+    <div class="offer">
+      <h2 style="margin-bottom:6px">Kit Negócio no Controle</h2>
+      <ul>
+        <li>Painel do Lucro com gráficos automáticos</li>
+        <li>Planilha de Fluxo de Caixa</li>
+        <li>Planilha de Precificação com alerta de prejuízo</li>
+        <li>Controle de Estoque com alerta de reposição</li>
+        <li>Guia rápido de uso dentro da planilha</li>
+        <li>Funciona no Excel e no Google Planilhas (grátis, no celular)</li>
+        <li>Pagamento único — sem mensalidade</li>
+      </ul>
+      <div class="big-price"><span>R$</span> 27</div>
+      <p class="price-line">Menos que um único bolo vendido no prejuízo.</p>
+      <a class="cta js-checkout" href="https://pay.kiwify.com.br/TUx510p">QUERO O KIT AGORA<small>Acesso imediato</small></a>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="alt">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="seal"><div><b>7</b>DIAS DE<br>GARANTIA</div></div>
+      <div>
+        <h3>Risco zero para você</h3>
+        <p style="margin:0">Use o kit por 7 dias. Se achar que não é para você, peça o reembolso pela própria plataforma e receba 100% do valor de volta. Sem perguntas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <h2>Perguntas frequentes</h2>
+    <details><summary>Preciso saber mexer no Excel?</summary><p>Não. As fórmulas já estão prontas. Você só digita nos campos brancos e o resto é automático. Dentro da planilha tem uma aba "Início" explicando tudo em 4 passos.</p></details>
+    <details><summary>Não tenho Excel. Funciona?</summary><p>Sim. Funciona no Google Planilhas, que é gratuito e roda no computador e no celular. É só importar o arquivo.</p></details>
+    <details><summary>Como recebo o kit?</summary><p>Logo após a confirmação do pagamento você recebe um e-mail com o acesso à área de membros, onde baixa as planilhas. No Pix, a liberação é imediata.</p></details>
+    <details><summary>É assinatura? Vou pagar todo mês?</summary><p>Não. É pagamento único de R$ 27 e as planilhas são suas para sempre.</p></details>
+    <details><summary>Serve para o meu tipo de negócio?</summary><p>Serve para qualquer pequeno negócio que vende produtos ou serviços. As categorias são editáveis e os exemplos (de uma confeitaria) mostram como preencher.</p></details>
+    <details><summary>E se eu não gostar?</summary><p>Você tem 7 dias de garantia. Peça o reembolso e receba todo o valor de volta.</p></details>
+    <p class="center" style="margin-top:28px"><a class="cta js-checkout" href="https://pay.kiwify.com.br/TUx510p">QUERO MEU NEGÓCIO NO CONTROLE<small>R$ 27 • acesso imediato</small></a></p>
+  </div>
+</section>
+
+<footer>
+  <p>Kit Negócio no Controle © 2026 • Pagamento processado com segurança pela Kiwify.</p>
+  <p>Os valores mostrados são exemplos ilustrativos. Os resultados dependem dos dados de cada negócio.</p>
+</footer>
+
+<div class="sticky"><a class="cta js-checkout" href="https://pay.kiwify.com.br/TUx510p">QUERO O KIT POR R$ 27</a></div>
+
+<script>
+  // Repassa UTMs (?utm_source=...) da página para o checkout, para saber de onde veio cada venda.
+  (function () {
+    var qs = window.location.search;
+    if (!qs) return;
+    document.querySelectorAll('.js-checkout').forEach(function (a) {
+      a.href = a.href + (a.href.indexOf('?') === -1 ? qs : '&' + qs.slice(1));
+    });
+  })();
+</script>
+</body>
+</html>
