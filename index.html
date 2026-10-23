@@ -77,6 +77,31 @@
   .shot { margin: 32px auto 0; max-width: 860px; border-radius: 12px; border: 1px solid #dfe8ea; box-shadow: 0 10px 30px rgba(0,0,0,.08); }
   .caption { text-align: center; font-size: 14px; color: var(--muted); margin-top: 10px; }
 
+  /* gallery tabs */
+  .gallery { max-width: 900px; margin: 36px auto 0; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 14px; }
+  .tabs button { font: inherit; font-size: 15px; font-weight: 600; border: 1px solid #cfdde1; background: #fff; color: var(--teal); padding: 9px 16px; border-radius: 99px; cursor: pointer; }
+  .tabs button[aria-selected="true"] { background: var(--teal); color: #fff; border-color: var(--teal); }
+  .panel { display: none; }
+  .panel.on { display: block; }
+  .panel .frame { overflow-x: auto; border-radius: 12px; border: 1px solid #dfe8ea; box-shadow: 0 10px 30px rgba(0,0,0,.08); background: #fff; }
+  .panel .frame img { max-width: none; width: 100%; min-width: 640px; }
+  .panel p { text-align: center; color: var(--muted); font-size: 15px; margin-top: 12px; }
+
+  /* author */
+  .author { display: flex; gap: 24px; align-items: center; max-width: 760px; margin: 0 auto; background: #fff; border: 1px solid #dfe8ea; border-radius: 16px; padding: 26px; }
+  .author .badge { flex: 0 0 92px; height: 92px; border-radius: 50%; background: var(--teal); color: #fff; display: grid; place-items: center; font-weight: 800; font-size: 30px; }
+  .author h3 { margin-bottom: 6px; }
+  .author p { margin: 0; color: var(--muted); }
+
+  /* bonus + launch */
+  .bonus { background: var(--yellow); border-radius: 12px; padding: 14px 18px; margin: 0 0 22px; text-align: left; font-size: 15px; }
+  .bonus b { color: #7a5c00; }
+  .launch { display: none; background: var(--red); color: #fff; text-align: center; padding: 10px 16px; font-weight: 700; font-size: 15px; }
+  .launch.on { display: block; }
+  .launch span { font-variant-numeric: tabular-nums; background: rgba(255,255,255,.18); padding: 2px 8px; border-radius: 6px; margin-left: 6px; }
+  .first { max-width: 720px; margin: 0 auto; text-align: center; background: #fff; border: 2px dashed #cfdde1; border-radius: 16px; padding: 26px; }
+
   /* for whom */
   .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
   .chips span { background: var(--teal-l); color: var(--teal); font-weight: 600; padding: 8px 14px; border-radius: 99px; font-size: 15px; }
@@ -123,6 +148,7 @@
 </head>
 <body>
 
+<div class="launch" id="launch">Preço de lançamento R$ 27 — sobe para R$ 49 em <span id="countdown"></span></div>
 <div class="bar">Planilhas prontas • Acesso imediato • Funciona no Excel e no Google Planilhas (inclusive no celular)</div>
 
 <!-- HERO -->
@@ -131,7 +157,7 @@
     <div>
       <span class="tag">PARA AUTÔNOMOS E PEQUENOS NEGÓCIOS</span>
       <h1>Você vende todo mês… mas sabe quanto <span class="hl">sobra de verdade</span>?</h1>
-      <p class="lead">O <b>Kit Negócio no Controle</b> tem 4 planilhas automáticas que mostram quanto entra, quanto sai, quanto cobrar em cada produto e o que precisa repor. Você só preenche — as contas são feitas sozinhas.</p>
+      <p class="lead">O <b>Kit Negócio no Controle</b> tem 4 planilhas automáticas que mostram quanto entra, quanto sai, quanto cobrar em cada produto e o que precisa repor. Você só preenche — as contas são feitas sozinhas, <b>mesmo sem entender nada de planilha</b>.</p>
       <a class="cta js-checkout" href="https://pay.kiwify.com.br/TUx510p">QUERO MEU NEGÓCIO NO CONTROLE<small>Acesso imediato por R$ 27</small></a>
       <p class="price-line">Pagamento único de <b>R$ 27</b> • Pix ou cartão • Garantia de 7 dias</p>
     </div>
@@ -183,8 +209,19 @@
       <div class="card"><div class="ico">🏷️</div><h3>Precificação</h3><p>Coloque os custos e veja o preço sugerido, o lucro real de cada venda e o alerta de <b>PREJUÍZO</b> quando o preço está errado.</p></div>
       <div class="card"><div class="ico">📦</div><h3>Controle de Estoque</h3><p>Registre compras e uso de materiais. A planilha avisa <b>REPOR</b> antes de faltar e mostra quanto dinheiro está parado no estoque.</p></div>
     </div>
-    <img class="shot" src="img/painel.jpg" alt="Painel do negócio com lucro, gráficos e indicadores" width="1168" height="819" loading="lazy">
-    <p class="caption">Painel real do kit, com os dados de exemplo da confeitaria.</p>
+    <div class="gallery">
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="p1">📊 Painel</button>
+        <button role="tab" aria-selected="false" data-tab="p2">🏷️ Precificação</button>
+        <button role="tab" aria-selected="false" data-tab="p3">💸 Caixa</button>
+        <button role="tab" aria-selected="false" data-tab="p4">📦 Estoque</button>
+      </div>
+      <div class="panel on" id="p1"><div class="frame"><img src="img/painel.jpg" alt="Painel do negócio com lucro, gráficos e indicadores" width="1168" height="819" loading="lazy"></div><p>Lucro, margem, saldo, alertas e gráficos — tudo automático.</p></div>
+      <div class="panel" id="p2"><div class="frame"><img src="img/precificacao.jpg" alt="Planilha de precificação com preço sugerido e diagnóstico" width="1400" height="264" loading="lazy"></div><p>Preço sugerido, lucro real por unidade e alerta de PREJUÍZO. Arraste para o lado no celular.</p></div>
+      <div class="panel" id="p3"><div class="frame"><img src="img/caixa.jpg" alt="Fluxo de caixa com entradas, saídas e saldo" width="1323" height="448" loading="lazy"></div><p>Cada lançamento leva 10 segundos, com menus prontos. O saldo se atualiza sozinho.</p></div>
+      <div class="panel" id="p4"><div class="frame"><img src="img/estoque.jpg" alt="Controle de estoque com alerta de reposição" width="1251" height="378" loading="lazy"></div><p>A planilha avisa REPOR antes de faltar material.</p></div>
+    </div>
+    <p class="caption">Prints reais do kit, com os dados de exemplo de uma confeitaria.</p>
   </div>
 </section>
 
@@ -212,6 +249,29 @@
   </div>
 </section>
 
+<!-- AUTHOR -->
+<section>
+  <div class="wrap">
+    <div class="author">
+      <div class="badge">20+</div>
+      <div>
+        <h3>Feito por quem trabalha com sistemas há mais de 20 anos</h3>
+        <p>O kit foi criado por um analista de sistemas que passou duas décadas montando controles e relatórios para empresas. A ideia foi pegar o que funciona em sistema de empresa grande e colocar numa planilha simples, que qualquer pequeno negócio consegue usar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIRST CUSTOMERS (substituir por depoimentos reais quando chegarem) -->
+<section class="alt">
+  <div class="wrap">
+    <div class="first">
+      <h3>🚀 Acabou de ser lançado</h3>
+      <p style="margin:0">Você está entre os primeiros a conhecer o Kit. Ainda não temos depoimentos para mostrar — por isso a garantia é de 7 dias: teste com os números do seu negócio e, se não servir, devolvemos 100% do valor.</p>
+    </div>
+  </div>
+</section>
+
 <!-- OFFER -->
 <section id="oferta">
   <div class="wrap">
@@ -225,7 +285,9 @@
         <li>Guia rápido de uso dentro da planilha</li>
         <li>Funciona no Excel e no Google Planilhas (grátis, no celular)</li>
         <li>Pagamento único — sem mensalidade</li>
+        <li>Suporte por e-mail para tirar dúvidas</li>
       </ul>
+      <div class="bonus"><b>Opcional no checkout:</b> adicione a <b>Planilha de Encomendas, Agenda e Fiado</b> por + R$ 12,90 — avisa pedidos atrasados e mostra quem está devendo.</div>
       <div class="big-price"><span>R$</span> 27</div>
       <p class="price-line">Menos que um único bolo vendido no prejuízo.</p>
       <a class="cta js-checkout" href="https://pay.kiwify.com.br/TUx510p">QUERO O KIT AGORA<small>Acesso imediato</small></a>
@@ -268,6 +330,30 @@
 <div class="sticky"><a class="cta js-checkout" href="https://pay.kiwify.com.br/TUx510p">QUERO O KIT POR R$ 27</a></div>
 
 <script>
+  // Abas da galeria de prints.
+  document.querySelectorAll('.tabs button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.tabs button').forEach(function (x) { x.setAttribute('aria-selected', x === b); });
+      document.querySelectorAll('.panel').forEach(function (p) { p.classList.toggle('on', p.id === b.dataset.tab); });
+    });
+  });
+
+  // Preço de lançamento: só aparece com uma data REAL em que o preço vai subir. Vazio = barra escondida.
+  var LAUNCH_ENDS = '2026-11-01T23:59:00-03:00';  // no dia, suba o preço na Kiwify para R$ 49
+  (function () {
+    if (!LAUNCH_ENDS) return;
+    var end = new Date(LAUNCH_ENDS).getTime(), bar = document.getElementById('launch'), out = document.getElementById('countdown');
+    function tick() {
+      var s = Math.floor((end - Date.now()) / 1000);
+      if (s <= 0) { bar.classList.remove('on'); return; }
+      var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), sec = s % 60;
+      out.textContent = (d ? d + 'd ' : '') + String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+      bar.classList.add('on');
+      setTimeout(tick, 1000);
+    }
+    tick();
+  })();
+
   // Repassa UTMs (?utm_source=...) da página para o checkout, para saber de onde veio cada venda.
   (function () {
     var qs = window.location.search;
