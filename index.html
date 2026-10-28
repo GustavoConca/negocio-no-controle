@@ -351,7 +351,7 @@ fbq('track', 'ViewContent', {content_name: 'Kit Negócio no Controle', value: 27
   });
 
   // Preço de lançamento: só aparece com uma data REAL em que o preço vai subir. Vazio = barra escondida.
-  var LAUNCH_ENDS = '2026-11-01T23:59:00-03:00';  // no dia, suba o preço na Kiwify para R$ 49
+  var LAUNCH_ENDS = '';  // ex.: '2026-11-15T23:59:00-03:00' — só com data REAL; no dia, suba o preço na Kiwify
   (function () {
     if (!LAUNCH_ENDS) return;
     var end = new Date(LAUNCH_ENDS).getTime(), bar = document.getElementById('launch'), out = document.getElementById('countdown');
